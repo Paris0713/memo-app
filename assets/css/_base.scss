@@ -1,0 +1,13 @@
+// 基本の設定
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* 62.5%= 10px なので、16pxにしたいときは1.6remにする　*/
+html {
+    font-size: 62.5%;
+    font-family: 'Noto Sans JP', "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif
+}

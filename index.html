@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログインと登録</title>
+    <link rel="stylesheet" href="path/to/your/styles.css">
+    <script src="../assets/js/main.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="login">
+            <div class="login__tabs">
+                <input id="tab-1" type="radio" name="tab" class="login__tab-input" checked>
+                <label for="tab-1" class="login__tab-label">Sign In</label>
+                <input id="tab-2" type="radio" name="tab" class="login__tab-input">
+                <label for="tab-2" class="login__tab-label">Sign Up</label>
+            </div>
+            <div class="login__forms">
+                <div class="login__form login__form--sign-in">
+                    <form action="../api/login.php" method="post">
+                        <div class="login__group">
+                            <label for="login-user" class="login__label">Username</label>
+                            <input id="login-user" type="text" class="login__input" name="username" required>
+                        </div>
+                        <div class="login__group">
+                            <label for="login-pass" class="login__label">Password</label>
+                            <input id="login-pass" type="password" class="login__input" name="password" data-type="password" required>
+                        </div>
+                        <div class="login__group">
+                            <input id="check" type="checkbox" class="login__checkbox" checked>
+                            <label for="check" class="login__checkbox-label"><span class="login__icon"></span> Keep me Signed in</label>
+                        </div>
+                        <div class="login__group">
+                            <input type="submit" class="login__button" value="Sign In">
+                        </div>
+                        <div class="login__divider"></div>
+                        <div class="login__footer">
+                            <a href="#forgot" class="login__link">Forgot Password?</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="login__form login__form--sign-up">
+                    <form action="../api/register.php" method="post">
+                        <div class="login__group">
+                            <label for="register-user" class="login__label">Username</label>
+                            <input id="register-user" type="text" class="login__input" name="username" required>
+                        </div>
+                        <div class="login__group">
+                            <label for="register-pass" class="login__label">Password</label>
+                            <input id="register-pass" type="password" class="login__input" name="password" data-type="password" required>
+                        </div>
+                        <div class="login__group">
+                            <label for="register-repeat-pass" class="login__label">Repeat Password</label>
+                            <input id="register-repeat-pass" type="password" class="login__input" name="repeat_password" data-type="password" required>
+                        </div>
+                        <div class="login__group">
+                            <label for="register-email" class="login__label">Email Address</label>
+                            <input id="register-email" type="email" class="login__input" name="email" required>
+                        </div>
+                        <div class="login__group">
+                            <input type="submit" class="login__button" value="Sign Up">
+                        </div>
+                        <div class="login__divider"></div>
+                        <div class="login__footer">
+                            <label for="tab-1" class="login__link">Already Member?</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
