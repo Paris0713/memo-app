@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memo App</title>
     <link rel="stylesheet" href="./assets/css/ans.css">
-    <script src="/assets/js/ans.js" defer></script>
-
-    <!-- git -->
 </head>
 <body>
     <div class="container">
@@ -17,7 +14,7 @@
                 <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
                 <div class="login-form login__form">
                     <div class="sign-in-htm login__form--sign-in">
-                        <form action="/lesson/memo-app/api/login.php" method="post">
+                        <form action="./api/login.php" method="post">
                             <div class="group">
                                 <label for="login-user" class="label">Username</label>
                                 <input id="login-user" type="text" class="input" name="username" required>
@@ -40,7 +37,7 @@
                         </form>
                     </div>
                     <div class="sign-up-htm login__form--sign-up">
-                        <form action="/api/register.php" method="post">
+                        <form action="./api/register.php" method="post">
                             <div class="group">
                                 <label for="register-user" class="label">Username</label>
                                 <input id="register-user" type="text" class="input" name="username" required>

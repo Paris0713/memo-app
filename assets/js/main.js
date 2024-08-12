@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.message) {
                 alert(data.message);
             }
-            if (response.ok) {
+            if (data.success) {
                 // ログイン成功時の処理 dashboard.phpへ移動
                 window.location.href = 'dashboard.php';
             }
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.message) {
                 alert(data.message);
             }
-            if (response.ok) {
+            if (data.success) {
                 // 登録成功時の処理
                 // 自動的にログインタブに切り替え
                 document.querySelector('#tab-1').checked = true;

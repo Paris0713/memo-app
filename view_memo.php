@@ -1,11 +1,11 @@
 <?php
-session_start();
-require 'path/to/your/database_connection.php';
+require '../includes/session.php';
+require '../includes/db.php';
+require '../includes/validation.php';
 
-// ログインしているか確認
-if (!isset($_SESSION['user_id'])) {
-    header('Location: index.php');
-    exit();
+// デバッグ用にPDOオブジェクトの確認
+if (!isset($pdo)) {
+    die('PDOオブジェクトが設定されていません');
 }
 
 // メモIDを取得

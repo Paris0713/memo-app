@@ -1,5 +1,5 @@
 <?php
-session_start();
+require '../includes/session.php';
 require '../includes/db.php';
 require '../includes/validation.php';
 

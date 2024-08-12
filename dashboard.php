@@ -1,12 +1,17 @@
 <?php
-session_start();
-require 'path/to/your/database_connection.php';
+require 'C:/xampp/htdocs/lesson/memo-app/includes/session.php';
+require 'C:/xampp/htdocs/lesson/memo-app/includes/db.php';
+require 'C:/xampp/htdocs/lesson/memo-app/includes/validation.php';
+
+
+// グローバル変数として$pdoを宣言
+global $pdo;
 
 // ログインしているか確認
-if (!isset($_SESSION['user_id'])) {
-    header('Location: index.php');
-    exit();
-}
+ if (!isset($_SESSION['user_id'])) {
+     header('Location: index.php');
+     exit();
+ }
 
 // ユーザーのメモを取得
 $stmt = $pdo->prepare('SELECT * FROM memos WHERE user_id = ?');

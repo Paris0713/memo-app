@@ -1,6 +1,7 @@
 <?php
-session_start();
+require '../includes/session.php';
 require '../includes/db.php';
+require '../includes/validation.php';
 
 if (!isset($_SESSION['user_id'])) {
     echo json_encode(['error' => 'ログインしてください']);

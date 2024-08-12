@@ -1,45 +1,45 @@
 <?php
-// データベース接続
-include 'db.php';
+require '../includes/session.php';
+require '../includes/db.php';
+require '../includes/validation.php';
 
-// リクエストボディを取得
-$input = json_decode(file_get_contents('php://input'), true);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = validateInput($_POST['username'], 'username');
+    $password = validateInput($_POST['password'], 'password');
 
-if (isset($input['email']) && isset($input['password'])) {
-    $email = $input['email'];
-    $password = $input['password'];
-
-    // ユーザーをデータベースから検索
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-    $user = $stmt->fetch();
-
-    // ユーザーが存在し、パスワードが一致するか確認
-    if ($user && password_verify($password, $user['password'])) {
-        
-        // セッションの開始
-        // ログイン成功
-        session_start();
-        $_SESSION['user_id'] = $user['id'];
-        echo json_encode(['message' => 'ログイン成功']);
-    } else {
-        // ログイン失敗
-        http_response_code(401);
-        echo json_encode(['message' => 'メールアドレスまたはパスワードが間違っています']);
+    if (!$username || !$password) {
+        http_response_code(400);
+        echo json_encode(['message' => 'すべてのフィールドを正しく入力してください']);
+        exit();
     }
-} else {
-    http_response_code(400);
-    echo json_encode(['message' => '入力データが不完全です']);
+
+    try {
+        $sql = 'SELECT id, username, password_hash FROM users WHERE username = :username';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['username' => $username]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user === false) {
+            error_log('User not found: ' . $username);
+        }
+
+        if ($user && password_verify($password, $user['password_hash'])) {
+            // ユーザーidをセッションに保存
+            $_SESSION['user_id'] = $user['id'];
+            // ユーザー名をセッションに保存
+            $_SESSION['username'] = $user['username'];
+            echo json_encode(['message' => 'ログイン成功']);
+            // dashbordに移動
+            header('Location: /lesson/memo-app/dashboard.php');
+            exit();
+
+        } else {
+            http_response_code(401);
+            echo json_encode(['message' => 'ユーザー名またはパスワードが間違っています']);
+        }
+    } catch (PDOException $e) {
+        error_log('Database error: ' . $e->getMessage());
+        http_response_code(500);
+        echo json_encode(['message' => 'システムエラーが発生しました。後でもう一度お試しください。']);
+    }
 }
-?>
-
-
-<!-- ユーザーのログイン
- 受け取るデータ: username, password
-処理内容:
-ユーザー名とパスワードを受け取る。
-データベースからユーザー情報を取得する。
-パスワードを検証する。
-セッションを開始する。
-返すデータ: 成功メッセージまたはエラーメッセージ -->
