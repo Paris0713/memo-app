@@ -1,10 +1,17 @@
 <?php
+
 require '../includes/session.php';
 require '../includes/db.php';
 require '../includes/validation.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents('php://input'), true);
+// JSON形式のPOSTデータを取得
+$input = file_get_contents('php://input');
+$data = json_decode($input, true);
+
+
+// POSTメソッドであることを確認し file_get_contents('php://input') でJSONデータを取得
+if (isset($data['username']) && isset($data['email']) && isset($data['password']) && isset($data['repeat_password'])) {
+
     
     $username = validateInput($data['username'], 'username');
     $email = validateInput($data['email'], 'email');
@@ -27,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'password_hash' => $password_hash
         ]);
 
-        echo json_encode(['message' => 'ユーザー登録が成功しました']);
+        echo json_encode(['message' => 'ユーザー登録が成功しました', 'password_hash' => $password_hash]);
     } catch (PDOException $e) {
         http_response_code(500);
         echo json_encode(['message' => 'サーバーエラーが発生しました']);
