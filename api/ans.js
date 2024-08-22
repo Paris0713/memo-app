@@ -1,28 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.querySelector('#form-login');
-    const registerForm = document.querySelector('#form-register');
+    const loginForm = document.querySelector('.login__form--sign-in form');
+    const registerForm = document.querySelector('.login__form--sign-up form');
 
-    // フォームの存在を確認し、ログを出力
     if (loginForm) {
-        console.log('ログインフォームが見つかりました');
-        // ログインフォームのイベントリスナーを設定
         loginForm.addEventListener('submit', handleLogin);
-    } else {
-        console.log('ログインフォームが見つかりませんでした');
     }
 
     if (registerForm) {
-        console.log('登録フォームが見つかりました');
-        // 登録フォームのイベントリスナーを設定
         registerForm.addEventListener('submit', handleRegister);
-    } else {
-        console.log('登録フォームが見つかりませんでした');
     }
 });
 
 async function handleLogin(event) {
     event.preventDefault();
-    console.log('ログインフォームが送信されました');
     
     const username = document.getElementById('login-user').value;
     const password = document.getElementById('login-pass').value;
@@ -37,16 +27,13 @@ async function handleLogin(event) {
     console.log('ログイン情報:', loginData);
 
     try {
-        const response = await fetch('http://localhost/lesson/memo-app/api/login.php', {
+        const response = await fetch('/lesson/memo-app/api/login.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(loginData)
         });
-
-        console.log('レスポンスステータス:', response.status);
-        console.log('レスポンスヘッダー:', response.headers);
 
         if (response.ok) {
             const data = await response.json();
@@ -60,6 +47,18 @@ async function handleLogin(event) {
         console.error('エラー:', error);
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const registerForm = document.querySelector('.login__form--sign-up form');
+
+    if (registerForm) {
+        console.log('登録フォームが見つかりました');
+        registerForm.addEventListener('submit', handleRegister);
+    } else {
+        console.log('登録フォームが見つかりませんでした');
+    }
+});
+
 
 async function handleRegister(event) {
     event.preventDefault();
@@ -92,9 +91,6 @@ async function handleRegister(event) {
             },
             body: JSON.stringify(registerData)
         });
-
-        // console.log('レスポンスステータス:', response.status);
-        // console.log('レスポンスヘッダー:', response.headers);
 
         if (response.ok) {
             const data = await response.json();

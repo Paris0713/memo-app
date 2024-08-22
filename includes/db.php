@@ -3,7 +3,7 @@
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'memo_app');
 define('DB_USER', 'root');
-define('DB_PASS', 'clonparis');
+define('DB_PASS', 'root');
 
 try {
     // データベース接続を確立

@@ -18,15 +18,15 @@ body{
     position:relative;
     box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
   }
-  .login-html{
+  #login-php{
     width:100%;
     height:100%;
     position:absolute;
     padding:90px 70px 50px 70px;
     background:rgba(40,57,101,.9);
   }
-  .login-html .sign-in-htm,
-  .login-html .sign-up-htm{
+  #login-php .sign-in-htm,
+  #login-php .sign-up-htm{
     top:0;
     left:0;
     right:0;
@@ -36,17 +36,17 @@ body{
     backface-visibility:hidden;
     transition:all .4s linear;
   }
-  .login-html .sign-in,
-  .login-html .sign-up,
+  #login-php .sign-in,
+  #login-php .sign-up,
   .login-form .group .check{
     display:none;
   }
-  .login-html .tab,
+  #login-php .tab,
   .login-form .group .label,
   .login-form .group .button{
     text-transform:uppercase;
   }
-  .login-html .tab{
+  #login-php .tab{
     font-size:22px;
     margin-right:15px;
     padding-bottom:5px;
@@ -54,8 +54,8 @@ body{
     display:inline-block;
     border-bottom:2px solid transparent;
   }
-  .login-html .sign-in:checked + .tab,
-  .login-html .sign-up:checked + .tab{
+  #login-php .sign-in:checked + .tab,
+  #login-php .sign-up:checked + .tab{
     color:#fff;
     border-color:#1161ee;
   }
@@ -134,10 +134,10 @@ body{
   .login-form .group .check:checked + label .icon:after{
     transform:scale(1) rotate(-45deg);
   }
-  .login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+  #login-php .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
     transform:rotate(0);
   }
-  .login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+  #login-php .sign-up:checked + .tab + .login-form .sign-up-htm{
     transform:rotate(0);
   }
   
