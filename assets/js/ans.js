@@ -51,7 +51,7 @@ async function handleLogin(event) {
         if (response.ok) {
             const data = await response.json();
             console.log('ログイン成功:', data);
-            window.location.href = '/dashboard.html'; // ログイン成功後のリダイレクト先
+            window.location.href = '/lesson/memo-app/dashboard.php'; // ログイン成功後のリダイレクト先
         } else {
             const errorData = await response.json();
             console.error('ログイン失敗:', errorData);

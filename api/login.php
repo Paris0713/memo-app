@@ -3,9 +3,14 @@ require '../includes/session.php';
 require '../includes/db.php';
 require '../includes/validation.php';
 
+header('Content-Type: application/json');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = validateInput($_POST['username'], 'username');
-    $password = validateInput($_POST['password'], 'password');
+    $requestPayload = file_get_contents("php://input");
+    $data = json_decode($requestPayload, true);
+
+    $username = validateInput($data['username'], 'username');
+    $password = validateInput($data['password'], 'password');
 
     if (!$username || !$password) {
         http_response_code(400);
@@ -29,10 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // ユーザー名をセッションに保存
             $_SESSION['username'] = $user['username'];
             echo json_encode(['message' => 'ログイン成功']);
-            // dashbordに移動
-            header('Location: /lesson/memo-app/dashboard.php');
             exit();
-
         } else {
             http_response_code(401);
             echo json_encode(['message' => 'ユーザー名またはパスワードが間違っています']);

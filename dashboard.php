@@ -1,7 +1,8 @@
 <?php
-require 'C:/xampp/htdocs/lesson/memo-app/includes/session.php';
-require 'C:/xampp/htdocs/lesson/memo-app/includes/db.php';
-require 'C:/xampp/htdocs/lesson/memo-app/includes/validation.php';
+require 'includes/session.php';
+require 'includes/db.php';
+require 'includes/validation.php';
+
 
 
 // グローバル変数として$pdoを宣言
