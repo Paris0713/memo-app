@@ -1,7 +1,10 @@
 <?php
+
 require '../includes/session.php';
 require '../includes/db.php';
 require '../includes/validation.php';
+require '../includes/error_handling.php';
+
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');

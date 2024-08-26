@@ -1,13 +1,16 @@
 <?php
-
+// 必要なファイルのインクルード
 require '../includes/session.php';
 require '../includes/db.php';
-require '../includes/validation.php'; // validation.php をインクルード
+require '../includes/validation.php';
+require '../includes/error_handling.php';
 
-header('Content-Type: application/json; charset=utf-8'); // ヘッダーを追加
+// JSONレスポンスを返すためのヘッダー設定
+header('Content-Type: application/json; charset=utf-8'); 
 
+// POSTリクエストの処理  クエストメソッドがPOSTかどうかを確認
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // JSON形式のPOSTデータを取得
+    // JSON形式のデータを取得し、デコード
     $data = json_decode(file_get_contents('php://input'), true);
 
     if ($data === null) {
@@ -15,9 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode(["message" => "無効なJSONデータです", "error" => json_last_error_msg()]);
         exit;
     }
-
-
+    
+    // 各入力フィールド（username, email, password, repeat_password）が存在するか確認
     if (isset($data['username']) && isset($data['email']) && isset($data['password']) && isset($data['repeat_password'])) {
+        // validateInput関数を用いて各入力を検証
         $username = validateInput($data['username'], 'username');
         $email = validateInput($data['email'], 'email');
         $password = validateInput($data['password'], 'password');
@@ -53,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             // パスワードのハッシュ化
             $password_hash = password_hash($password, PASSWORD_BCRYPT);
+            // データベースに新しいユーザーを挿入
             $sql = 'INSERT INTO users (username, email, password_hash) VALUES (:username, :email, :password_hash)';
             $stmt = $pdo->prepare($sql);
             $stmt->execute([

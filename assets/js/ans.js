@@ -100,7 +100,7 @@ async function handleRegister(event) {
             const data = await response.json();
             console.log('登録成功:', data);
             console.log('ハッシュ化されたパスワード:', data.password_hash);
-            window.location.href = '/lesson/memo-app/success-page.html'; // 登録成功後のリダイレクト先
+            window.location.href = '/lesson/memo-app/dashboard.php'; // 登録成功後のリダイレクト先
         } else {
             const errorData = await response.json();
             console.error('登録失敗:', errorData);

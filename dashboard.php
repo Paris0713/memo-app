@@ -1,7 +1,8 @@
 <?php
-require 'includes/session.php';
-require 'includes/db.php';
-require 'includes/validation.php';
+require '../includes/session.php';
+require '../includes/db.php';
+require '../includes/validation.php';
+require '../includes/error_handling.php';
 
 
 
@@ -9,10 +10,10 @@ require 'includes/validation.php';
 global $pdo;
 
 // ログインしているか確認
- if (!isset($_SESSION['user_id'])) {
-     header('Location: index.php');
-     exit();
- }
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.php');
+    exit();
+}
 
 // ユーザーのメモを取得
 $stmt = $pdo->prepare('SELECT * FROM memos WHERE user_id = ?');
@@ -48,7 +49,7 @@ $memos = $stmt->fetchAll();
         </ul>
 
         <h2>新しいメモを作成</h2>
-        <form action="create_memo.php" method="post">
+        <form action="../lesson/memo-app/api/create_note.php" method="post">
             <div class="group">
                 <label for="memo-title" class="label">タイトル</label>
                 <input id="memo-title" type="text" class="input" name="title" required>
@@ -58,9 +59,18 @@ $memos = $stmt->fetchAll();
                 <textarea id="memo-content" class="input" name="content" required></textarea>
             </div>
             <div class="group">
+                <label for="memo-tags" class="label">タグ</label>
+                <input id="memo-tags" type="text" class="input" name="tags" placeholder="カンマ区切りで入力">
+            </div>
+            <div class="group">
                 <input type="submit" class="button" value="作成">
             </div>
         </form>
+        <a href="../lesson/memo-app/api/edit_memo.php?id=<?php echo $memo['id']; ?>">編集</a>
+
+        <a href="delete_memo.php?id=<?php echo $memo['id']; ?>">削除</a>
+
+
     </div>
 </body>
 
@@ -74,4 +84,3 @@ $memos = $stmt->fetchAll();
 メモの編集・削除：既存のメモを編集または削除する機能
 タグの管理：メモにタグを付ける機能を提供し、タグの作成・編集・削除
  -->
-

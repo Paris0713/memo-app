@@ -1,71 +1,114 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // ログインフォームの送信イベントのリスナー(DOMが完全に構築された後にスクリプトを実行)
-    
-    // login__form--sign-inクラスのform要素を選択して
-    // 送信されたときのイベントハンドラを追加
-    document.querySelector('.login__form--sign-in form').addEventListener('submit', function (event) {
-        // ページのリロードを防止
-        event.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.querySelector('#form-login');
+    const registerForm = document.querySelector('#form-register');
 
-        // ユーザー名とパスワードの入力値を取得
-        const username = document.querySelector('#login-user').value;
-        const password = document.querySelector('#login-pass').value;
+    // フォームの存在を確認し、ログを出力
+    if (loginForm) {
+        console.log('ログインフォームが見つかりました');
+        // ログインフォームのイベントリスナーを設定
+        loginForm.addEventListener('submit', handleLogin);
+    } else {
+        console.log('ログインフォームが見つかりませんでした');
+    }
 
-        // fetch関数を使用して、../api/login.phpにPOSTリクエストを送信
-        fetch('../api/login.php', {
-            method: 'POST',
-            // リクエストヘッダーを設定 json形式
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            // リクエストボディをJSON形式に変換して送信
-            body: JSON.stringify({ username: username, password: password })
-        })
-
-        // レスポンスデータをJSON形式に変換
-        .then(response => response.json())
-        .then(data => {
-            // サーバーからのメッセージがあればアラートで表示
-            if (data.message) {
-                alert(data.message);
-            }
-            if (data.success) {
-                // ログイン成功時の処理 dashboard.phpへ移動
-                window.location.href = 'dashboard.php';
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
-
-    // 登録フォームの送信イベントのリスナー
-
-    // フォームの選択と送信イベントの追加
-    document.querySelector('.login__form--sign-up form').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const username = document.querySelector('#register-user').value;
-        const email = document.querySelector('#register-email').value;
-        const password = document.querySelector('#register-pass').value;
-        const repeat_password = document.querySelector('#register-repeat-pass').value;
-
-        fetch('../api/register.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username: username, email: email, password: password, repeat_password: repeat_password })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.message) {
-                alert(data.message);
-            }
-            if (data.success) {
-                // 登録成功時の処理
-                // 自動的にログインタブに切り替え
-                document.querySelector('#tab-1').checked = true;
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
+    if (registerForm) {
+        console.log('登録フォームが見つかりました');
+        // 登録フォームのイベントリスナーを設定
+        registerForm.addEventListener('submit', handleRegister);
+    } else {
+        console.log('登録フォームが見つかりませんでした');
+    }
 });
+
+async function handleLogin(event) {
+    event.preventDefault();
+    console.log('ログインフォームが送信されました');
+    
+    const username = document.getElementById('login-user').value;
+    const password = document.getElementById('login-pass').value;
+    const keepSignedIn = document.getElementById('check').checked;
+
+    const loginData = {
+        username: username,
+        password: password,
+        keepSignedIn: keepSignedIn
+    };
+
+    console.log('ログイン情報:', loginData);
+
+    try {
+        const response = await fetch('http://localhost/lesson/memo-app/api/login.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(loginData)
+        });
+
+        console.log('レスポンスステータス:', response.status);
+        console.log('レスポンスヘッダー:', response.headers);
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log('ログイン成功:', data);
+            window.location.href = '/lesson/memo-app/dashboard.php'; // ログイン成功後のリダイレクト先
+        } else {
+            const errorData = await response.json();
+            console.error('ログイン失敗:', errorData);
+        }
+    } catch (error) {
+        console.error('エラー:', error);
+    }
+}
+
+async function handleRegister(event) {
+    event.preventDefault();
+    console.log('登録フォームが送信されました');
+
+    const username = document.getElementById('register-user').value;
+    const password = document.getElementById('register-pass').value;
+    const repeatPassword = document.getElementById('register-repeat-pass').value;
+    const email = document.getElementById('register-email').value;
+
+    if (password !== repeatPassword) {
+        console.error('パスワードが一致しません');
+        return;
+    }
+
+    const registerData = {
+        username: username,
+        password: password,
+        repeat_password: repeatPassword,
+        email: email
+    };
+
+    console.log('送信するデータ:', registerData);
+
+    try {
+        const response = await fetch('/lesson/memo-app/api/register.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(registerData)
+        });
+
+        // console.log('レスポンスステータス:', response.status);
+        // console.log('レスポンスヘッダー:', response.headers);
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log('登録成功:', data);
+            console.log('ハッシュ化されたパスワード:', data.password_hash);
+            window.location.href = '/lesson/memo-app/dashboard.php'; // 登録成功後のリダイレクト先
+        } else {
+            const errorData = await response.json();
+            console.error('登録失敗:', errorData);
+            console.log('レスポンスステータス:', response.status);
+            console.log('レスポンスヘッダー:', response.headers);
+            console.log('レスポンスボディ:', await response.text()); // デバッグ用にレスポンスボディをテキストで表示
+        }
+    } catch (error) {
+        console.error('エラー:', error);
+    }
+}
