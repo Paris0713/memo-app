@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /lesson/memo-app/
+RewriteRule ^index\.php$ dashboard.php [R=301,L]

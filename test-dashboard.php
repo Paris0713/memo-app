@@ -4,16 +4,22 @@ require(__DIR__ . '/includes/db.php');
 require(__DIR__ . '/includes/validation.php');
 require(__DIR__ . '/includes/error_handling.php');
 
-// セッションの確認
+
+// header('Content-Type: application/json; charset=utf-8');
+
+// グローバル変数として$pdoを宣言
+// global $pdo;
+
+// ログインしているか確認
 check_login();
 
-// ユーザーのメモを取得
 try {
+    // ユーザーのメモを取得
     $stmt = $pdo->prepare('SELECT * FROM memos WHERE user_id = ?');
     $stmt->execute([$_SESSION['user_id']]);
-    $memos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $memos = $stmt->fetchAll();
 
-        
+    
     // デバッグ用: 取得したメモを確認
     // if (empty($memos)) {
     //     echo json_encode(['message' => 'メモが見つかりません。']);
@@ -22,7 +28,7 @@ try {
     // }
 
     // JSON形式で結果を返す（APIとして利用する場合）
-    // echo json_encode($memos);    
+    // echo json_encode($memos);
 } catch (PDOException $e) {
     http_response_code(500);
     echo json_encode(['message' => 'データベースエラー: ' . $e->getMessage()]);
@@ -32,31 +38,29 @@ try {
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Memo App</title>
     <link rel="stylesheet" href="./css/dashboard.css">
 </head>
+
 <body>
     <div class="container">
         <h1>ようこそ、<?php echo htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8'); ?>さん</h1>
         <h2>あなたのメモ</h2>
         <ul>
-            <?php if (empty($memos)): ?>
-                <li>メモがありません。新しいメモを作成してください。</li>
-            <?php else: ?>
-                <?php foreach ($memos as $memo): ?>
-                    <li>
-                        <!-- 作成したメモのリンク -->
-                        <h3><a href="view_memo.php?id=<?php echo $memo['id']; ?>"><?php echo htmlspecialchars($memo['title'], ENT_QUOTES, 'UTF-8'); ?></a></h3>
-                        <p><?php echo nl2br(htmlspecialchars($memo['content'], ENT_QUOTES, 'UTF-8')); ?></p>
-                        <!-- メモの編集・削除リンク -->
-                        <a href="edit_memo.php?id=<?php echo $memo['id']; ?>">編集</a>
-                        <a href="delete_memo.php?id=<?php echo $memo['id']; ?>">削除</a>
-                    </li>
-                <?php endforeach; ?>
-            <?php endif; ?>
+            <?php foreach ($memos as $memo): ?>
+                <li>
+                    <!-- 作成したメモのリンク -->
+                    <h3><a href="view_memo.php?id=<?php echo $memo['id']; ?>"><?php echo htmlspecialchars($memo['title'], ENT_QUOTES, 'UTF-8'); ?></a></h3>
+                    <p><?php echo nl2br(htmlspecialchars($memo['content'], ENT_QUOTES, 'UTF-8')); ?></p>
+                    <!-- メモの編集・削除リンク -->
+                    <a href="edit_memo.php?id=<?php echo $memo['id']; ?>">編集</a>
+                    <a href="delete_memo.php?id=<?php echo $memo['id']; ?>">削除</a>
+                </li>
+            <?php endforeach; ?>
         </ul>
 
         <h2>新しいメモを作成</h2>
@@ -77,6 +81,21 @@ try {
                 <input type="submit" class="button" value="作成">
             </div>
         </form>
+        <a href="../lesson/memo-app/api/edit_memo.php?id=<?php echo $memo['id']; ?>">編集</a>
+
+        <a href="delete_memo.php?id=<?php echo $memo['id']; ?>">削除</a>
+
+
     </div>
 </body>
+
 </html>
+
+
+
+<!-- 
+ メモの一覧表示：ユーザーが作成したメモの一覧を表示
+新規メモの作成：新しいメモを作成するためのフォーム
+メモの編集・削除：既存のメモを編集または削除する機能
+タグの管理：メモにタグを付ける機能を提供し、タグの作成・編集・削除
+ -->

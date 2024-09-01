@@ -2,7 +2,7 @@
 // カスタムエラーハンドラ関数
 function customErrorHandler($errno, $errstr, $errfile, $errline) {
     // エラーメッセージをログファイルに書き込む
-    error_log("Error [$errno]: $errstr in $errfile on line $errline", 3, '../logs/error.log');
+    error_log("Error [$errno]: $errstr in $errfile on line $errline", 3, __DIR__ . '/../logs/error.log');
     // ユーザーに表示するエラーメッセージ
     echo "An error occurred. Please try again later.";
 }
