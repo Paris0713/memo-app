@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare('UPDATE memos SET title = ?, content = ? WHERE id = ? AND user_id = ?');
     $stmt->execute([$title, $content, $id, $_SESSION['user_id']]);
 
-    header('Location: dashboard.php');
+    header('Location: ../dashboard.php');
     exit();
 } else {
     $id = $_GET['id'];
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $memo = $stmt->fetch();
 
     if (!$memo) {
-        header('Location: dashboard.php');
+        header('Location: ../dashboard.php');
         exit();
     }
 }

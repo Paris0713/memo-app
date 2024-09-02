@@ -36,7 +36,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Memo App</title>
-    <link rel="stylesheet" href="./css/dashboard.css">
+    
 </head>
 <body>
     <div class="container">
@@ -52,15 +52,15 @@ try {
                         <h3><a href="view_memo.php?id=<?php echo $memo['id']; ?>"><?php echo htmlspecialchars($memo['title'], ENT_QUOTES, 'UTF-8'); ?></a></h3>
                         <p><?php echo nl2br(htmlspecialchars($memo['content'], ENT_QUOTES, 'UTF-8')); ?></p>
                         <!-- メモの編集・削除リンク -->
-                        <a href="edit_memo.php?id=<?php echo $memo['id']; ?>">編集</a>
-                        <a href="delete_memo.php?id=<?php echo $memo['id']; ?>">削除</a>
+                        <a href="./api/edit_memo.php?id=<?php echo $memo['id']; ?>">編集</a>
+                        <a href="./api/delete_note.php?id=<?php echo $memo['id']; ?>">削除</a>
                     </li>
                 <?php endforeach; ?>
             <?php endif; ?>
         </ul>
 
         <h2>新しいメモを作成</h2>
-        <form action="../lesson/memo-app/api/create_note.php" method="post">
+        <form action="./api/create_memo.php" method="post">
             <div class="group">
                 <label for="memo-title" class="label">タイトル</label>
                 <input id="memo-title" type="text" class="input" name="title" required>

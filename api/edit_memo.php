@@ -1,13 +1,17 @@
 <?php
+// ファイルのインクルード
 require '../includes/session.php';
 require '../includes/db.php';
 require '../includes/validation.php';
+require '../includes/error_handling.php';
 
+// ログイン確認 ログインしていない場合はログインページにリダイレクト
 if (!isset($_SESSION['user_id'])) {
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit();
 }
 
+// POSTリクエストが送信された場合 内容を取得し、データベースを更新
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $title = $_POST['title'];
@@ -16,8 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare('UPDATE memos SET title = ?, content = ? WHERE id = ? AND user_id = ?');
     $stmt->execute([$title, $content, $id, $_SESSION['user_id']]);
 
-    header('Location: dashboard.php');
+    // 更新後、ダッシュボードページにリダイレクト
+    header('Location: ../dashboard.php');
     exit();
+
+    // ページが初めて読み込まれたときには GET メソッドを使用して、URLからメモのIDを取得
 } else {
     $id = $_GET['id'];
     $stmt = $pdo->prepare('SELECT * FROM memos WHERE id = ? AND user_id = ?');
@@ -25,12 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $memo = $stmt->fetch();
 
     if (!$memo) {
-        header('Location: dashboard.php');
+        header('Location: ../dashboard.php');
         exit();
     }
 }
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
