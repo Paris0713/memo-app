@@ -5,21 +5,25 @@ require '../includes/db.php';
 require '../includes/validation.php';
 require '../includes/error_handling.php';
 
-if (!isset($_SESSION['user_id'])) {
-    echo json_encode(['error' => 'ログインしてください']);
-    exit();
-}
+
+// JSONレスポンスを返すためのヘッダー設定
+header('Content-Type: application/json; charset=utf-8');
+
+// ログイン状態を確認 インクルードしているファイルから呼び出し
+check_login();
 
 $id = $_GET['id'];
 $stmt = $pdo->prepare('DELETE FROM memos WHERE id = ? AND user_id = ?');
 if ($stmt->execute([$id, $_SESSION['user_id']])) {
-    echo json_encode(['message' => 'メモの削除が成功しました']);
+    // ダッシュボードページでメッセージを表示
+    header('Location: ../dashboard.php?message=delete_success');
+    exit();
 } else {
     echo json_encode(['error' => 'メモの削除に失敗しました']);
 }
 exit();
 ?>
-
+<!-- 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -51,4 +55,4 @@ exit();
             .catch(error => console.error('Error:', error));
     </script>
 </body>
-</html>
+</html> -->

@@ -28,6 +28,15 @@ try {
     echo json_encode(['message' => 'データベースエラー: ' . $e->getMessage()]);
     exit();
 }
+
+// メッセージを表示させる
+$message = '';
+if (isset($_GET['message'])) {
+    if ($_GET['message'] === 'delete_success') {
+        $message = 'メモの削除が成功しました。';
+
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +50,18 @@ try {
 <body>
     <div class="container">
         <h1>ようこそ、<?php echo htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8'); ?>さん</h1>
+
+        <!-- メッセージを表示させるdiv -->
+        <?php if (isset($_GET['message'])): ?>
+            <?php if ($_GET['message'] == 'delete_success'): ?>
+                <div class="alert alert-success">メモの削除に成功しました。</div>
+            <?php elseif ($_GET['message'] == 'delete_fail'): ?>
+                <div class="alert alert-danger">メモの削除に失敗しました。</div>
+            <?php endif; ?>
+
+        <?php endif; ?> 
+
+
         <h2>あなたのメモ</h2>
         <ul>
             <?php if (empty($memos)): ?>
@@ -53,7 +74,7 @@ try {
                         <p><?php echo nl2br(htmlspecialchars($memo['content'], ENT_QUOTES, 'UTF-8')); ?></p>
                         <!-- メモの編集・削除リンク -->
                         <a href="./api/edit_memo.php?id=<?php echo $memo['id']; ?>">編集</a>
-                        <a href="./api/delete_note.php?id=<?php echo $memo['id']; ?>">削除</a>
+                        <a href="./api/delete_memo.php?id=<?php echo $memo['id']; ?>">削除</a>
                     </li>
                 <?php endforeach; ?>
             <?php endif; ?>

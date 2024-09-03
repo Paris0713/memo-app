@@ -27,10 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // ページが初めて読み込まれたときには GET メソッドを使用して、URLからメモのIDを取得
 } else {
     $id = $_GET['id'];
+    // PDOを使ってSQLでmemosテーブルに編集内容を挿入する準備
     $stmt = $pdo->prepare('SELECT * FROM memos WHERE id = ? AND user_id = ?');
+    // SQLの実行
     $stmt->execute([$id, $_SESSION['user_id']]);
     $memo = $stmt->fetch();
-
+    // 成功したらダッシュボードページへリダイレクト
     if (!$memo) {
         header('Location: ../dashboard.php');
         exit();
