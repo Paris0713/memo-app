@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memo App</title>
     <link rel="stylesheet" href="./assets/css/ans.css">
-    <script src="/lesson/memo-app/assets/js/main.js" defer></script>
+    <script src="./assets/js/main.js" defer></script>
 
     <!-- git -->
 </head>
@@ -24,7 +24,7 @@
                 <label for="tab-2" class="tab">Sign Up</label>
                 <div class="login-form login__form">
                     <div class="sign-in-htm login__form--sign-in">
-                        <form id="form-login" action="/lesson/memo-app/api/login.php" method="post">
+                        <form id="form-login" action="./api/login.php" method="post">
                             <div class="group">
                                 <label for="login-user" class="label">Username</label>
                                 <!-- 警告が出るのでautocomplete属性を追加 -->
@@ -48,7 +48,7 @@
                         </form>
                     </div>
                     <div class="sign-up-htm login__form--sign-up">
-                        <form id="form-register" action="/lesson/memo-app/api/register.php" method="post">
+                        <form id="form-register" action="./api/register.php" method="post">
                             <div class="group">
                                 <label for="register-user" class="label">Username</label>
                                 <input id="register-user" type="text" class="input" name="username" required autocomplete="username">

@@ -35,9 +35,11 @@ async function handleLogin(event) {
     };
 
     console.log('ログイン情報:', loginData);
+    // デバッグ用
+    console.log('送信するログインデータ:', JSON.stringify(loginData));
 
     try {
-        const response = await fetch('http://localhost/lesson/memo-app/api/login.php', {
+        const response = await fetch('../api/login.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -48,13 +50,12 @@ async function handleLogin(event) {
         console.log('レスポンスステータス:', response.status);
         console.log('レスポンスヘッダー:', response.headers);
 
+        const responseData = await response.json();
         if (response.ok) {
-            const data = await response.json();
-            console.log('ログイン成功:', data);
-            window.location.href = '/lesson/memo-app/dashboard.php'; // ログイン成功後のリダイレクト先
+            console.log('ログイン成功:', responseData);
+            window.location.href = '../dashboard.php'; // ログイン成功後のリダイレクト先
         } else {
-            const errorData = await response.json();
-            console.error('ログイン失敗:', errorData);
+            console.error('ログイン失敗:', responseData);
         }
     } catch (error) {
         console.error('エラー:', error);
@@ -83,9 +84,11 @@ async function handleRegister(event) {
     };
 
     console.log('送信するデータ:', registerData);
+    // デバッグ用
+    console.log('送信する登録データ:', JSON.stringify(registerData));
 
     try {
-        const response = await fetch('/lesson/memo-app/api/register.php', {
+        const response = await fetch('../api/register.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -93,20 +96,20 @@ async function handleRegister(event) {
             body: JSON.stringify(registerData)
         });
 
-        // console.log('レスポンスステータス:', response.status);
-        // console.log('レスポンスヘッダー:', response.headers);
+        // テキストとしてレスポンスを取得
+        const responseText = await response. text();
+        console.log('レスポンス:', responseText);
 
+        // JSON形式に変換
+        const responseData = JSON.parse(responseText);
+
+        // const responseData = await response.json();
         if (response.ok) {
-            const data = await response.json();
-            console.log('登録成功:', data);
-            console.log('ハッシュ化されたパスワード:', data.password_hash);
-            window.location.href = '/lesson/memo-app/dashboard.php'; // 登録成功後のリダイレクト先
+            console.log('登録成功:', responseData);
+            // console.log('ハッシュ化されたパスワード:', responseData.password_hash);
+            window.location.href = '../dashboard.php'; // 登録成功後のリダイレクト先
         } else {
-            const errorData = await response.json();
-            console.error('登録失敗:', errorData);
-            console.log('レスポンスステータス:', response.status);
-            console.log('レスポンスヘッダー:', response.headers);
-            console.log('レスポンスボディ:', await response.text()); // デバッグ用にレスポンスボディをテキストで表示
+            console.error('登録失敗:', responseData);
         }
     } catch (error) {
         console.error('エラー:', error);

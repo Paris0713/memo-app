@@ -1,0 +1,161 @@
+[11-Sep-2024 01:56:18 UTC] POSTリクエストを受信しました
+[11-Sep-2024 01:56:18 UTC] 受信した生のデータ: {"username":"hogehoge","password":"hogepass","repeat_password":"hogepass","email":"hoge@email.com"}
+[11-Sep-2024 01:56:18 UTC] デコードされたデータ: Array
+(
+    [username] => hogehoge
+    [password] => hogepass
+    [repeat_password] => hogepass
+    [email] => hoge@email.com
+)
+
+[11-Sep-2024 01:56:18 UTC] バリデーション結果: Array
+(
+    [0] => hogehoge
+    [1] => hoge@email.com
+    [2] => hogepass
+    [3] => hogepass
+)
+
+[11-Sep-2024 01:56:18 UTC] PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'hogehoge' for key 'username'
+[11-Sep-2024 02:00:52 UTC] POSTリクエストを受信しました
+[11-Sep-2024 02:00:52 UTC] 受信した生のデータ: {"username":"TsdtUser","password":"test1234","repeat_password":"test1234","email":"test@email.com"}
+[11-Sep-2024 02:00:52 UTC] デコードされたデータ: Array
+(
+    [username] => TsdtUser
+    [password] => test1234
+    [repeat_password] => test1234
+    [email] => test@email.com
+)
+
+[11-Sep-2024 02:00:52 UTC] バリデーション結果: Array
+(
+    [0] => TsdtUser
+    [1] => test@email.com
+    [2] => test1234
+    [3] => test1234
+)
+
+[11-Sep-2024 02:00:52 UTC] SQLクエリの実行結果: failure
+[11-Sep-2024 02:00:52 UTC] SQLエラー: Array
+(
+    [0] => 00000
+    [1] => 
+    [2] => 
+)
+
+[11-Sep-2024 02:17:07 UTC] POSTリクエストを受信しました
+[11-Sep-2024 02:17:07 UTC] 受信した生のデータ: {"username":"Doggy","password":"woofwoof","repeat_password":"woofwoof","email":"Doggy@email.com"}
+[11-Sep-2024 02:17:07 UTC] デコードされたデータ: Array
+(
+    [username] => Doggy
+    [password] => woofwoof
+    [repeat_password] => woofwoof
+    [email] => Doggy@email.com
+)
+
+[11-Sep-2024 02:17:07 UTC] バリデーション結果: Array
+(
+    [0] => Doggy
+    [1] => Doggy@email.com
+    [2] => woofwoof
+    [3] => woofwoof
+)
+
+[11-Sep-2024 02:17:08 UTC] SQLクエリの実行結果: failure
+[11-Sep-2024 02:17:08 UTC] SQLエラー: Array
+(
+    [0] => 00000
+    [1] => 
+    [2] => 
+)
+
+[11-Sep-2024 02:41:53 UTC] POSTリクエストを受信しました
+[11-Sep-2024 02:41:53 UTC] 受信した生のデータ: {"username":"sloth","password":"password","repeat_password":"password","email":"sloth@gmail.com"}
+[11-Sep-2024 02:41:53 UTC] デコードされたデータ: Array
+(
+    [username] => sloth
+    [password] => password
+    [repeat_password] => password
+    [email] => sloth@gmail.com
+)
+
+[11-Sep-2024 02:41:53 UTC] バリデーション結果: Array
+(
+    [0] => sloth
+    [1] => sloth@gmail.com
+    [2] => password
+    [3] => password
+)
+
+[11-Sep-2024 02:41:53 UTC] SQLクエリの実行結果: failure
+[11-Sep-2024 02:41:53 UTC] SQLエラー: Array
+(
+    [0] => 00000
+    [1] => 
+    [2] => 
+)
+
+[11-Sep-2024 03:22:55 UTC] POSTリクエストを受信しました
+[11-Sep-2024 03:22:55 UTC] 受信した生のデータ: {"username":"Cat","password":"meowmeow","repeat_password":"meowmeow","email":"cat@email.com"}
+[11-Sep-2024 03:22:55 UTC] デコードされたデータ: Array
+(
+    [username] => Cat
+    [password] => meowmeow
+    [repeat_password] => meowmeow
+    [email] => cat@email.com
+)
+
+[11-Sep-2024 03:22:55 UTC] バリデーション結果: Array
+(
+    [0] => Cat
+    [1] => cat@email.com
+    [2] => meowmeow
+    [3] => meowmeow
+)
+
+[11-Sep-2024 03:22:56 UTC] SQLクエリの実行結果: failure
+[11-Sep-2024 03:22:56 UTC] SQLエラー: Array
+(
+    [0] => 00000
+    [1] => 
+    [2] => 
+)
+
+[11-Sep-2024 04:00:34 UTC] POSTリクエストを受信しました
+[11-Sep-2024 04:00:34 UTC] 受信した生のデータ: {"username":"kuma","password":"1234kuma","repeat_password":"1234kuma","email":"kuma@email.com"}
+[11-Sep-2024 04:00:34 UTC] デコードされたデータ: Array
+(
+    [username] => kuma
+    [password] => 1234kuma
+    [repeat_password] => 1234kuma
+    [email] => kuma@email.com
+)
+
+[11-Sep-2024 04:00:34 UTC] バリデーション結果: Array
+(
+    [0] => kuma
+    [1] => kuma@email.com
+    [2] => 1234kuma
+    [3] => 1234kuma
+)
+
+[11-Sep-2024 04:00:34 UTC] SQLクエリの実行結果: success
+[11-Sep-2024 04:00:55 UTC] POSTリクエストを受信しました
+[11-Sep-2024 04:00:55 UTC] 受信した生のデータ: {"username":"kuma","password":"1234kuma","repeat_password":"1234kuma","email":"kuma@email.com"}
+[11-Sep-2024 04:00:55 UTC] デコードされたデータ: Array
+(
+    [username] => kuma
+    [password] => 1234kuma
+    [repeat_password] => 1234kuma
+    [email] => kuma@email.com
+)
+
+[11-Sep-2024 04:00:55 UTC] バリデーション結果: Array
+(
+    [0] => kuma
+    [1] => kuma@email.com
+    [2] => 1234kuma
+    [3] => 1234kuma
+)
+
+[11-Sep-2024 04:00:56 UTC] PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'kuma' for key 'username'

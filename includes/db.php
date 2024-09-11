@@ -1,6 +1,6 @@
 <?php
 // データベース接続情報を設定
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'db');
 define('DB_NAME', 'memo_app');
 define('DB_USER', 'root');
 define('DB_PASS', 'root');

@@ -32,16 +32,9 @@ CREATE TABLE IF NOT EXISTS TAGS (
 
 -- MEMO_TAGSテーブルの作成
 CREATE TABLE IF NOT EXISTS MEMO_TAGS (
-    note_id INT NOT NULL,
+    memo_id INT NOT NULL,
     tag_id INT NOT NULL,
-    PRIMARY KEY (note_id, tag_id),
-    FOREIGN KEY (note_id) REFERENCES NOTES(id) ON DELETE CASCADE,
+    PRIMARY KEY (memo_id, tag_id),  -- note_idをmemo_idに変更
+    FOREIGN KEY (memo_id) REFERENCES MEMOS(id) ON DELETE CASCADE,  -- note_idをmemo_idに変更
     FOREIGN KEY (tag_id) REFERENCES TAGS(id) ON DELETE CASCADE
 );
-
-
--- NOTESテーブルをMEMOSテーブルに変更
--- ALTER TABLE NOTES RENAME TO MEMOS;
-
--- NOTE_TAGSテーブルをMEMO_TAGSテーブルに変更
--- ALTER TABLE NOTE_TAGS RENAME TO MEMO_TAGS;

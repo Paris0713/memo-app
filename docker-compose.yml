@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"  # ホストの8080ポートをコンテナの80ポートにマッピング
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db  # dbサービスに依存
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root  # rootユーザーのパスワード
+      MYSQL_DATABASE: memo_app    # 作成するデータベース名
+      # MYSQL_USER: root            # 新しいユーザー名（必要であれば変更）
+      # MYSQL_PASSWORD: root        # 新しいユーザーのパスワード（必要であれば変更）
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8081:80"  # phpMyAdminをホストの8081ポートで利用
+    environment:
+      PMA_HOST: db  # MySQLのホスト名
+      PMA_USER: root
+      PMA_PASSWORD: root  # rootユーザーのパスワード
+
+volumes:
+  db_data:
