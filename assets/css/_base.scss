@@ -1,13 +1,28 @@
 // 基本の設定
 
+/* 変数 */
+$base-font: "M PLUS Rounded 1c", system-ui;
+$primary-color: #1161ee;
+$background-color: (40, 57, 101, 0.9);
+$input-background: rgba(255, 255, 255, 0.1);
 
-* {
-    margin: 0;
-    padding: 0;
-}
+/* 基本の設定 */
+body {
+  margin: 0;
+  color: #6a6f8c;
+  background: #c8c8c8;
+  font: 600 16px/18px $base-font;
 
-/* 62.5%= 10px なので、16pxにしたいときは1.6remにする　*/
-html {
-    font-size: 62.5%;
-    font-family: 'Noto Sans JP', "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif
+  /* 全ての要素にボックスモデルのサイズ計算を指定 */
+  *,
+  ::after,
+  ::before {
+    box-sizing: border-box;
+  }
+
+  /* リンクのカラーを親要素から継承 */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }

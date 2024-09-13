@@ -16,6 +16,9 @@ RUN mkdir -p /var/www/html/logs && chown www-data:www-data /var/www/html/logs
 # PHP設定用のカスタムphp.iniを追加
 COPY php.ini /usr/local/etc/php/
 
+# ファビコンをApacheのドキュメントルートにコピー
+COPY ./assets/img/favicon.ico /var/www/html/assets/img/favicon.ico
+
 # 作業ディレクトリを設定
 WORKDIR /var/www/html
 

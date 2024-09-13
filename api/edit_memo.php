@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // 更新後、ダッシュボードページにリダイレクト
         header('Location: ../dashboard.php');
         exit();
-        
     } catch (Exception $e) {
         // トランザクションをロールバック
         $pdo->rollBack();
@@ -48,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     $id = $_GET['id'];
     // プリペアドステートメントでmemosテーブルに編集内容を挿入する準備と実行
-    $stmt =$pdo->prepare('SELECT * FROM memos WHERE id = ? AND user_id = ?');
+    $stmt = $pdo->prepare('SELECT * FROM memos WHERE id = ? AND user_id = ?');
     $stmt->execute([$id, $_SESSION['user_id']]);
     $memo = $stmt->fetch();
     // 成功したらダッシュボードページへリダイレクト
@@ -65,6 +64,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=Cactus+Classical+Serif&family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
     <title>Edit Memo - Memo App</title>
 </head>
 

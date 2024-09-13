@@ -1,0 +1,147 @@
+// main
+/* ログインフォーム */
+.login-wrap {
+  width: 100%;
+  margin: auto;
+  max-width: 525px;
+  min-height: 670px;
+  /* 相対位置 */
+  position: relative;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+  .login-php {
+    width: 100%;
+    height: 100%;
+    /* 絶対位置 */
+    position: absolute;
+    padding: 90px 70px 50px 70px;
+    background: $background-color;
+  }
+
+  .login__form {
+    min-height: 345px;
+    /* 相対位置 */
+    position: relative;
+    /* 要素の奥行を指定(指定する数値が低いほど奥行が深い) */
+    perspective: 1000px;
+    /* 子要素に3D変換を適用 */
+    transform-style: preserve-3d;
+
+    &--sign-in,
+    &--sign-up {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      /* 絶対位置 */
+      position: absolute;
+      /* 縦軸（Y軸）を中心に回転 */
+      transform: rotateY(180deg);
+      /* 要素の裏側を非表示 */
+      backface-visibility: hidden;
+      /* 0.4秒で線形にアニメーション */
+      transition: all 0.4s linear;
+    }
+  }
+}
+
+.tab,
+.login-form {
+    .group {
+        margin-bottom: 15px;
+
+        .label,
+        .input,
+        .button {
+            width: 100%;
+            color: #fff;
+            display: block;
+        }
+
+        .input,
+        .button {
+            border: none;
+            padding: 15px 20px;
+            border-radius: 25px;
+            background: $input-background;
+        }
+
+        .button {
+            background: $primary-color;
+        }
+        /* パスワード入力フィールドの文字の丸を装飾（練習用）*/
+        input[data-type="password"] {
+            text-security: circle;
+            -webkit-text-security: circle;
+        }
+
+        .label {
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        /* チェックされたときのラベルの色 */
+        .check:checked + label {
+            color: #fff;
+
+            .icon {
+                background: $primary-color;
+                &::before {
+                    transform: scale(1) rotate(45deg);
+                }
+                &::after {
+                    transform: scale(1) rotate(-45deg);
+                }
+            }
+        }
+        .icon {
+            width: 15px;
+            height: 15px;
+            border-radius: 2px;
+            position: relative;
+            display: inline-block;
+            background: $input-background;
+
+            &::before,
+            &::after {
+                /* 擬似要素の内容を空に設定 */
+                content: "";
+                width: 10px;
+                height: 2px;
+                background: #fff;
+                position: absolute;
+                transition: all 0.2s ease-in-out 0s;
+            }
+
+            &::before {
+                left: 3px;
+                width: 5px;
+                bottom: 6px;
+                transform: scale(0) rotate(0);
+            }
+
+            &::after {
+                top: 6px;
+                right: 0;
+                transform: scale(0) rotate(0);
+            }
+        }
+    }
+}
+
+#tab-1:checked ~ .login__form .login__form--sign-in,
+#tab-2:checked ~ .login__form .login__form--sign-up {
+    transform: rotate(0);
+}
+
+.hr {
+    height: 2px;
+    margin: 60px 0 50px 0;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.foot-lnk {
+    text-align: center;
+}
+
