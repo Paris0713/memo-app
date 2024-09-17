@@ -9,10 +9,10 @@ ini_set('log_errors', 1);
 ini_set('error_log', '/var/www/html/log/php_errors.log');
 
 // 必要なファイルのインクルード
-require '../includes/session.php';
-require '../includes/db.php';
-require '../includes/validation.php';
-require '../includes/error_handling.php';
+require(__DIR__ . '/../includes/session.php');
+require(__DIR__ . '/../includes/db.php');
+require(__DIR__ . '/../includes/validation.php');
+require(__DIR__ . '/../includes/error_handling.php');
 
 // JSONレスポンスを返すためのヘッダー設定
 header('Content-Type: application/json; charset=utf-8'); 

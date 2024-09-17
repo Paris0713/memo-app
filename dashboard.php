@@ -13,6 +13,9 @@ try {
     $stmt->execute([$_SESSION['user_id']]);
     $memos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    // デバッグ用: 取得したメモを確認
+    // var_dump($memos);
+
 
     // デバッグ用: 取得したメモを確認
     // if (empty($memos)) {
@@ -48,6 +51,8 @@ if (isset($_GET['message'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=Cactus+Classical+Serif&family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./assets/css/dashboard.css">
     <title>Dashboard - Memo App</title>
 
@@ -94,24 +99,26 @@ if (isset($_GET['message'])) {
 
             <h2>新しいメモを作成</h2>
             <form action="./api/create_memo.php" method="post">
-                <div class="group">
-                    <label for="memo-title" class="label">タイトル</label>
-                    <input id="memo-title" type="text" class="input" name="title" required>
+                <div class="memo-group">
+                    <label for="memo-title" class="memo-label">タイトル</label>
+                    <input id="memo-title" type="text" class="memo-input" name="title" required>
                 </div>
-                <div class="group">
-                    <label for="memo-content" class="label">内容</label>
-                    <textarea id="memo-content" class="input" name="content" required></textarea>
+                <div class="memo-group">
+                    <label for="memo-content" class="memo-label">内容</label>
+                    <textarea id="memo-content" class="memo-input" name="content" required></textarea>
                 </div>
-                <div class="group">
-                    <label for="memo-tags" class="label">タグ</label>
-                    <input id="memo-tags" type="text" class="input" name="tags" placeholder="カンマ区切りで入力">
+                <div class="memo-group">
+                    <label for="memo-tags" class="memo-label">タグ</label>
+                    <input id="memo-tags" type="text" class="memo-input" name="tags" placeholder="カンマ区切りで入力">
                 </div>
-                <div class="group">
-                    <input type="submit" class="button" value="作成">
+                <div class="nmemo-group">
+                    <input type="submit" class="memo-button" value="作成">
                 </div>
             </form>
         </div>
     </div>
+
+    <script src="./assets/js/nav-test.js"></script>
 </body>
 
 </html>

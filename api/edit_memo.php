@@ -1,9 +1,9 @@
 <?php
 // ファイルのインクルード
-require '../includes/session.php';
-require '../includes/db.php';
-require '../includes/validation.php';
-require '../includes/error_handling.php';
+require(__DIR__ . '/../includes/session.php');
+require(__DIR__ . '/../includes/db.php');
+require(__DIR__ . '/../includes/validation.php');
+require(__DIR__ . '/../includes/error_handling.php');
 
 // JSONレスポンスを返すためのヘッダー設定
 // header('Content-Type: application/json; charset=utf-8');
@@ -68,6 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=Cactus+Classical+Serif&family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
     <title>Edit Memo - Memo App</title>
 </head>
 

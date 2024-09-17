@@ -159,3 +159,22 @@
 )
 
 [11-Sep-2024 04:00:56 UTC] PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'kuma' for key 'username'
+[15-Sep-2024 07:19:28 UTC] POSTリクエストを受信しました
+[15-Sep-2024 07:19:28 UTC] 受信した生のデータ: {"username":"Carp","password":"koikoi","repeat_password":"koikoi","email":"carp@email.com"}
+[15-Sep-2024 07:19:28 UTC] デコードされたデータ: Array
+(
+    [username] => Carp
+    [password] => koikoi
+    [repeat_password] => koikoi
+    [email] => carp@email.com
+)
+
+[15-Sep-2024 07:19:28 UTC] バリデーション結果: Array
+(
+    [0] => Carp
+    [1] => carp@email.com
+    [2] => koikoi
+    [3] => koikoi
+)
+
+[15-Sep-2024 07:19:29 UTC] SQLクエリの実行結果: success

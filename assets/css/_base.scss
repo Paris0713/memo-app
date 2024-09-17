@@ -3,13 +3,13 @@
 /* 変数 */
 $base-font: "M PLUS Rounded 1c", system-ui;
 $primary-color: #1161ee;
-$background-color: (40, 57, 101, 0.9);
+$background-color: rgba(40, 57, 101, 0.9);
 $input-background: rgba(255, 255, 255, 0.1);
 
 /* 基本の設定 */
 body {
   margin: 0;
-  color: #6a6f8c;
+  color: #091767;
   background: #c8c8c8;
   font: 600 16px/18px $base-font;
 
