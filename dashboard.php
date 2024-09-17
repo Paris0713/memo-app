@@ -9,7 +9,7 @@ check_login();
 
 // ユーザーのメモを取得
 try {
-    $stmt = $pdo->prepare('SELECT * FROM memos WHERE user_id = ?');
+    $stmt = $pdo->prepare('SELECT * FROM memos WHERE user_id = ? LIMIT 3');
     $stmt->execute([$_SESSION['user_id']]);
     $memos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
