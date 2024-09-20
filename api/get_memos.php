@@ -20,7 +20,7 @@ check_login();
 
 // オフセットとリミットの取得
 $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
-$limit = 3;
+$limit = 5;
 
 // ユーザーIDを取得
 $user_id = $_SESSION['user_id'] ?? null; // nullの場合を考慮

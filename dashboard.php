@@ -9,7 +9,7 @@ check_login();
 
 // ユーザーのメモを取得
 try {
-    $stmt = $pdo->prepare('SELECT * FROM memos WHERE user_id = ? LIMIT 3');
+    $stmt = $pdo->prepare('SELECT * FROM memos WHERE user_id = ? LIMIT 5');
     $stmt->execute([$_SESSION['user_id']]);
     $memos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -56,6 +56,10 @@ if (isset($_GET['message'])) {
     <link rel="stylesheet" href="./assets/css/dashboard.css">
     <title>Dashboard - Memo App</title>
 
+    <script>
+        const initialMemos = <?php echo json_encode($memos); ?>;
+    </script>
+
 </head>
 
 <body>
@@ -76,22 +80,10 @@ if (isset($_GET['message'])) {
 
         <div class="nav">
 
-            <h2>あなたのメモ</h2>
-            <ul>
-                <?php if (empty($memos)): ?>
-                    <li>メモがありません。新しいメモを作成してください。</li>
-                <?php else: ?>
-                    <?php foreach ($memos as $memo): ?>
-                        <li>
-                            <!-- 作成したメモのリンク -->
-                            <h3><a href="view_memo.php?id=<?php echo $memo['id']; ?>"><?php echo htmlspecialchars($memo['title'], ENT_QUOTES, 'UTF-8'); ?></a></h3>
-                            <p><?php echo nl2br(htmlspecialchars($memo['content'], ENT_QUOTES, 'UTF-8')); ?></p>
-                            <!-- メモの編集・削除リンク -->
-                            <a href="./api/edit_memo.php?id=<?php echo $memo['id']; ?>">編集</a>
-                            <a href="./api/delete_memo.php?id=<?php echo $memo['id']; ?>">削除</a>
-                        </li>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+            <h2>あなたのメモ</h2>            
+            
+            <ul id="memo-list">
+                 <!-- 初期データはJavaScriptで表示 -->
             </ul>
 
         </div>
@@ -115,7 +107,11 @@ if (isset($_GET['message'])) {
                     <input type="submit" class="memo-button" value="作成">
                 </div>
             </form>
+            <div class="logout">
+        <a href="./api/logout.php" class="logout-button">ログアウト</a>
         </div>
+        </div>
+        
     </div>
 
     <script src="./assets/js/nav-test.js"></script>
