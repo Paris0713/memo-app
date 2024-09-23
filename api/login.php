@@ -7,7 +7,7 @@ require(__DIR__ . '/../includes/error_handling.php');
 
 
 
-// JSONレスポンスを返すためのヘッダー設定
+// JSONレスポンスを返すことを伝えるためのヘッダー設定
 header('Content-Type: application/json');
 
 // $_SERVER['REQUEST_METHOD']がPOSTかどうかを確認

@@ -1,7 +1,7 @@
 // base
 /* 変数 */
 $base-font: "Open Sans", sans-serif;
-$primary-color: #1161ee;
+$tab-color: #1161ee;
 $background-color: rgba(40, 57, 101, 0.9);
 $input-background: rgba(255, 255, 255, 0.1);
 
@@ -94,7 +94,7 @@ body {
     }
 
     .button {
-      background: $primary-color;
+      background: $tab-color;
     }
 
     input[data-type="password"] {
@@ -111,7 +111,7 @@ body {
       color: #fff;
 
       .icon {
-        background: $primary-color;
+        background: $tab-color;
         &::before {
           transform: scale(1) rotate(45deg);
         }

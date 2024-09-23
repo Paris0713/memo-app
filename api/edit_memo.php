@@ -75,21 +75,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <div class="container">
-        <h2>メモを編集</h2>
-        <form action="edit_memo.php" method="post">
-            <input type="hidden" name="id" value="<?php echo htmlspecialchars($memo['id'], ENT_QUOTES, 'UTF-8'); ?>">
-            <div class="group">
-                <label for="memo-title" class="label">タイトル</label>
-                <input id="memo-title" type="text" class="input" name="title" value="<?php echo htmlspecialchars($memo['title'], ENT_QUOTES, 'UTF-8'); ?>" required>
+        <div class="edit">
+            <dev class="edit-header">
+                <h2 class="edit-h2">メモを編集</h2>
+            </dev>
+            <div class="edit-area">
+                <form action="edit_memo.php" method="post">
+                    <input type="hidden" name="id"
+                        value="<?php echo htmlspecialchars($memo['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <div class="edit-group">
+                        <label for="memo-title" class="label">タイトル</label>
+                        <input id="memo-title" type="text" class="edit-input" name="title"
+                            value="<?php echo htmlspecialchars($memo['title'], ENT_QUOTES, 'UTF-8'); ?>" required>
+                    </div>
+                    <div class="edit-group">
+                        <label for="memo-content" class="label">内容</label>
+                        <textarea id="memo-content" class="input edit-textarea" name="content"
+                            required><?php echo htmlspecialchars($memo['content'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+                    </div>
+                    <div class="edit-group">
+                        <input type="submit" class="edit-button" value="編集">
+                    </div>
+                </form>
+
             </div>
-            <div class="group">
-                <label for="memo-content" class="label">内容</label>
-                <textarea id="memo-content" class="input" name="content" required><?php echo htmlspecialchars($memo['content'], ENT_QUOTES, 'UTF-8'); ?></textarea>
-            </div>
-            <div class="group">
-                <input type="submit" class="button" value="編集">
-            </div>
-        </form>
+            <dev class="edit-footer">
+
+                <a class="foot-lnk" href="../dashboard.php">ダッシュボードページへ戻る</a>
+            </dev>
+        </div>
     </div>
 </body>
 

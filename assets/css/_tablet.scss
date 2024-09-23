@@ -1,0 +1,7 @@
+// tablet
+/* index.php タブレット用スタイル */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .login-php {
+        min-height: 90vh;
+    }
+}

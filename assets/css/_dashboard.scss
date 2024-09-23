@@ -1,0 +1,117 @@
+// dashboard.php
+/* ここからdashboard.phpの指定 */
+
+// dashboard用の変数
+$border-color: #507ea4;
+
+// ミックスインの定義
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin button-style($bg-color, $font-color) {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 2px solid $border-color;
+  cursor: pointer;
+  background-color: $bg-color;
+  color: $font-color;
+  text-decoration: none;
+}
+
+@mixin form-input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 2px solid $border-color;
+  font-family: $base-font;
+}
+
+@mixin form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: $primary-color;
+}
+
+.dashboard {
+  &-container {
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr;
+    grid-template-rows: auto 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "dashboard-header dashboard-header"
+      "nav memo";
+  }
+
+  &-body {
+    margin: 0;
+    color: $primary-color;
+    background: $base-background-color;
+    font: 600 16px/18px $base-font;
+  }
+
+  &-header {
+    grid-area: dashboard-header;
+    @include flex-center;
+
+    h1 {
+      text-align: center;
+    }
+  }
+}
+
+.nav {
+  grid-area: nav;
+  padding: 0 5px 5px 10px;
+  /* スクロールバーを追加 */
+  overflow-y: auto;
+  /* navエリアの高さの指定 */
+  max-height: calc(100vh - 100px);
+}
+
+.memo {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0 20px 5px 10px;
+  /* スクロールバーを追加 */
+  overflow-y: hidden;
+
+  &-group {
+    margin-bottom: 20px;
+  }
+
+  &-label {
+    @include form-label;
+  }
+
+  &-input {
+    @include form-input;
+  }
+
+  &-button {
+    @include button-style(transparent, inherit);
+  }
+}
+
+.logout {
+  margin-top: 30px;
+  text-align: center;
+
+  &-button {
+    @include button-style($primary-color, #aaa);
+    border-color: rgba(40, 57, 101, 0.902);
+
+    &:hover {
+      background-color: #406080;
+    }
+  }
+}

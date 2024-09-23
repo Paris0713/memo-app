@@ -2,16 +2,20 @@
 
 /* 変数 */
 $base-font: "M PLUS Rounded 1c", system-ui;
-$primary-color: #1161ee;
-$background-color: rgba(40, 57, 101, 0.9);
-$input-background: rgba(255, 255, 255, 0.1);
+$base-background-color: #b0c4de;
+$tab-color: #1161ee;
+$primary-color: #283965e6;
+$input-background: #ffffff1a;
+$text-color: #091767;
+$label-color: #aaa
 
 /* 基本の設定 */
 body {
   margin: 0;
-  color: #091767;
-  background: #c8c8c8;
+  color: $text-color;
+  background: $base-background-color;
   font: 600 16px/18px $base-font;
+  overflow: hidden;
 
   /* 全ての要素にボックスモデルのサイズ計算を指定 */
   *,

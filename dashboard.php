@@ -62,9 +62,9 @@ if (isset($_GET['message'])) {
 
 </head>
 
-<body>
+<body class="dashboard-body">
     <div class="dashboard-container">
-        <header class="header">
+        <header class="dashboard-header">
             <h1>ようこそ、<?php echo htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8'); ?>さん</h1>
 
             <!-- メッセージを表示させるdiv -->
@@ -87,7 +87,7 @@ if (isset($_GET['message'])) {
             </ul>
 
         </div>
-        <div class="main">
+        <div class="memo">
 
             <h2>新しいメモを作成</h2>
             <form action="./api/create_memo.php" method="post">

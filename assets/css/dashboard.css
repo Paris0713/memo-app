@@ -9,9 +9,9 @@
     "nav main";
 }
 
-body {
+.dashboard-body {
   margin: 0;
-  color: rgba(40, 57, 101, 0.9);
+  color: #283965e6;
   background: #b0c4de;
   font: 600 16px/18px "M PLUS Rounded 1c", system-ui;
 }
@@ -21,14 +21,14 @@ a {
   text-decoration: none;
 }
 
-.header {
+.dashboard-header {
   grid-area: header;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.header h1 {
+.dashboaed-header h1 {
   text-align: center;
 }
 
@@ -41,12 +41,12 @@ a {
   max-height: calc(100vh - 100px);
 }
 
-.main {
+.memo {
   grid-area: main;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   padding: 0 20px 5px 10px;
   /* スクロールバーを追加 */
   overflow-y: hidden; 
@@ -79,18 +79,36 @@ a {
 .logout {
   margin-top: 50px;
   text-align: center;
-}
-.logout-button {
-  padding: 10px 15px;
-  border-radius: 5px;
-  background-color: #507ea4;
-  color: white;
-  text-decoration: none;
-  border: 2px solid #507ea4;
-  cursor: pointer;
+
+  &-button {
+    @include button-style(#283965, #aaa);
+    border-color: rgba(40, 57, 101, 0.902);
+
+    &:hover {
+      background-color: #406080;
+    }
+  }
 }
 
-.logout-button:hover {
-  background-color: #406080;
-}
+@media screen and (max-width: 600px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "header"
+      "main"
+      "nav";
+  }
 
+  .dashboard-header {
+    grid-area: header;
+  }
+
+  .memo {
+    grid-area: main;
+  }
+
+  .nav {
+    grid-area: nav;
+  }
+}

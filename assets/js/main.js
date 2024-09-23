@@ -90,9 +90,11 @@ async function handleRegister(event) {
     try {
         const response = await fetch('../api/register.php', {
             method: 'POST',
+            // リクエストのヘッダーでJSON形式を設定
             headers: {
                 'Content-Type': 'application/json'
             },
+            // JSON形式に変換
             body: JSON.stringify(registerData)
         });
 

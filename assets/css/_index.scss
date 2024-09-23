@@ -68,7 +68,7 @@
         }
 
         .button {
-            background: $primary-color;
+            background: $tab-color;
         }
         /* パスワード入力フィールドの文字の丸を装飾（練習用）*/
         input[data-type="password"] {
@@ -86,7 +86,7 @@
             color: #fff;
 
             .icon {
-                background: $primary-color;
+                background: $tab-color;
                 &::before {
                     transform: scale(1) rotate(45deg);
                 }

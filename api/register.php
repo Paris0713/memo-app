@@ -14,7 +14,7 @@ require(__DIR__ . '/../includes/db.php');
 require(__DIR__ . '/../includes/validation.php');
 require(__DIR__ . '/../includes/error_handling.php');
 
-// JSONレスポンスを返すためのヘッダー設定
+// JSONレスポンスを返すことを伝えるためのヘッダー設定
 header('Content-Type: application/json; charset=utf-8'); 
 
 // デバッグ関数
