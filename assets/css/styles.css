@@ -1,0 +1,366 @@
+@charset "UTF-8";
+/* 変数 */
+/* 基本の設定 */
+body {
+  margin: 0;
+  color: #091767;
+  background: #b0c4de;
+  font: 600 16px/18px "M PLUS Rounded 1c", system-ui;
+  overflow: hidden;
+  /* 全ての要素にボックスモデルのサイズ計算を指定 */
+  /* リンクのカラーを親要素から継承 */
+}
+body *,
+body ::after,
+body ::before {
+  box-sizing: border-box;
+}
+body a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* レイアウト */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ログインフォーム */
+.login-wrap {
+  width: 100%;
+  margin: auto;
+  max-width: 525px;
+  min-height: 670px;
+  /* 相対位置 */
+  position: relative;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+.login-wrap .login-php {
+  width: 100%;
+  height: 100%;
+  /* 絶対位置 */
+  position: absolute;
+  padding: 90px 70px 50px 70px;
+  background: #283965;
+}
+.login-wrap .login__form {
+  min-height: 345px;
+  /* 相対位置 */
+  position: relative;
+  /* 要素の奥行を指定(指定する数値が低いほど奥行が深い) */
+  perspective: 1000px;
+  /* 子要素に3D変換を適用 */
+  transform-style: preserve-3d;
+}
+.login-wrap .login__form--sign-in, .login-wrap .login__form--sign-up {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* 絶対位置 */
+  position: absolute;
+  /* 縦軸（Y軸）を中心に回転 */
+  transform: rotateY(180deg);
+  /* 要素の裏側を非表示 */
+  backface-visibility: hidden;
+  /* 0.4秒で線形にアニメーション */
+  transition: all 0.4s linear;
+}
+
+.tab .group,
+.login-form .group {
+  margin-bottom: 15px;
+  /* チェックされたときのラベルの色 */
+}
+.tab .group .label,
+.tab .group .input,
+.tab .group .button,
+.login-form .group .label,
+.login-form .group .input,
+.login-form .group .button {
+  width: 100%;
+  color: #fff;
+  display: block;
+}
+.tab .group .input,
+.tab .group .button,
+.login-form .group .input,
+.login-form .group .button {
+  border: none;
+  padding: 15px 20px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1019607843);
+}
+.tab .group .button,
+.login-form .group .button {
+  background: #1161ee;
+}
+.tab .group .label,
+.login-form .group .label {
+  color: #aaa;
+  font-size: 12px;
+}
+.tab .group .check:checked + label,
+.login-form .group .check:checked + label {
+  color: #fff;
+}
+.tab .group .check:checked + label .icon,
+.login-form .group .check:checked + label .icon {
+  background: #1161ee;
+}
+.tab .group .check:checked + label .icon::before,
+.login-form .group .check:checked + label .icon::before {
+  transform: scale(1) rotate(45deg);
+}
+.tab .group .check:checked + label .icon::after,
+.login-form .group .check:checked + label .icon::after {
+  transform: scale(1) rotate(-45deg);
+}
+.tab .group .icon,
+.login-form .group .icon {
+  width: 15px;
+  height: 15px;
+  border-radius: 2px;
+  position: relative;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.1019607843);
+}
+.tab .group .icon::before, .tab .group .icon::after,
+.login-form .group .icon::before,
+.login-form .group .icon::after {
+  /* 擬似要素の内容を空に設定 */
+  content: "";
+  width: 10px;
+  height: 2px;
+  background: #fff;
+  position: absolute;
+  transition: all 0.2s ease-in-out 0s;
+}
+.tab .group .icon::before,
+.login-form .group .icon::before {
+  left: 3px;
+  width: 5px;
+  bottom: 6px;
+  transform: scale(0) rotate(0);
+}
+.tab .group .icon::after,
+.login-form .group .icon::after {
+  top: 6px;
+  right: 0;
+  transform: scale(0) rotate(0);
+}
+
+#tab-1:checked ~ .login__form .login__form--sign-in,
+#tab-2:checked ~ .login__form .login__form--sign-up {
+  transform: rotate(0);
+}
+
+.hr {
+  height: 2px;
+  margin: 60px 0 50px 0;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.foot-lnk {
+  text-align: center;
+}
+
+/* ここからdashboard.phpの指定 */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr;
+  grid-template-rows: auto 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas: "dashboard-header dashboard-header" "nav memo";
+}
+.dashboard-body {
+  margin: 0;
+  color: #283965;
+  background: #b0c4de;
+  font: 600 16px/18px "M PLUS Rounded 1c", system-ui;
+}
+.dashboard-header {
+  grid-area: dashboard-header;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboard-header h1 {
+  text-align: center;
+}
+
+.nav {
+  grid-area: nav;
+  padding: 0 5px 5px 10px;
+  /* スクロールバーを追加 */
+  overflow-y: auto;
+  /* navエリアの高さの指定 */
+  max-height: calc(100vh - 100px);
+}
+
+.memo {
+  grid-area: memo;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0 20px 5px 10px;
+  /* スクロールバーを追加 */
+  overflow-y: hidden;
+}
+.memo-group {
+  margin-bottom: 20px;
+}
+.memo-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #283965;
+}
+.memo-input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 2px solid #507ea4;
+  font-family: "M PLUS Rounded 1c", system-ui;
+}
+.memo-button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 2px solid #507ea4;
+  cursor: pointer;
+  background-color: transparent;
+  color: inherit;
+  text-decoration: none;
+}
+
+.logout {
+  margin-top: 30px;
+  text-align: center;
+}
+.logout-button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 2px solid #507ea4;
+  cursor: pointer;
+  background-color: #283965;
+  color: #aaa;
+  text-decoration: none;
+  border-color: rgba(40, 57, 101, 0.902);
+}
+.logout-button:hover {
+  background-color: #406080;
+}
+
+/* ここからedit_memo.phpの指定 */
+.edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 80vh;
+  margin: auto;
+  background-color: #283965;
+  color: #b0c4de;
+  padding: 10px;
+}
+.edit-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.edit-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 20px;
+  width: 100%;
+  min-height: auto;
+}
+.edit-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.edit-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-input,
+.edit-textarea,
+.edit-button {
+  border-radius: 10px;
+}
+
+.input.edit-textarea {
+  height: 200px;
+}
+
+.foot-link {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* index.php タブレット用スタイル */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .login-php {
+    min-height: 90vh;
+  }
+}
+/* index.php モバイル用スタイル */
+@media screen and (max-width: 600px) {
+  .container {
+    background-color: #283965;
+  }
+  .login-php {
+    background-color: #283965;
+    padding: 20px 10px; /* 横のpaddingを少し残して縦を減らす */
+    height: auto; /* 子要素が収まるように高さを自動調整 */
+  }
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh; /* 画面いっぱいの高さに設定 */
+  }
+}
+/* dashboard.php モバイル用スタイル */
+@media screen and (max-width: 600px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "header" "main" "nav";
+  }
+  .dashboard-header {
+    grid-area: header;
+  }
+  .memo {
+    grid-area: main;
+  }
+  .nav {
+    grid-area: nav;
+  }
+}
+/* edit_memo.php モバイル用スタイル */
+@media screen and (max-width: 600px) {
+  .container {
+    display: none; /* .container要素を非表示に */
+  }
+  .edit {
+    width: 100%; /* 画面幅いっぱいに */
+    overflow: hidden; /* 子要素がはみ出さないように */
+  }
+  .login-php {
+    width: 100%;
+    overflow: hidden;
+  }
+}/*# sourceMappingURL=styles.css.map */

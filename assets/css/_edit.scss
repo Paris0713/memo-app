@@ -10,7 +10,7 @@
     height: 80vh;
     margin: auto;
     background-color: $primary-color;
-    color: $body-background;
+    color: $base-background-color;
     padding: 10px;
     // ネスト
     &-header {
@@ -46,7 +46,7 @@
 .edit-input,
 .edit-textarea,
 .edit-button {
-    border-radius: 25px;
+    border-radius: 10px;
 }
 
 .input.edit-textarea {

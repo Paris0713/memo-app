@@ -53,7 +53,7 @@ if (isset($_GET['message'])) {
     <link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=Cactus+Classical+Serif&family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
     
     <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./assets/css/dashboard.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
     <title>Dashboard - Memo App</title>
 
     <script>
@@ -103,7 +103,7 @@ if (isset($_GET['message'])) {
                     <label for="memo-tags" class="memo-label">タグ</label>
                     <input id="memo-tags" type="text" class="memo-input" name="tags" placeholder="カンマ区切りで入力">
                 </div>
-                <div class="nmemo-group">
+                <div class="memo-group">
                     <input type="submit" class="memo-button" value="作成">
                 </div>
             </form>

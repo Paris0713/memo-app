@@ -16,7 +16,7 @@
     /* 絶対位置 */
     position: absolute;
     padding: 90px 70px 50px 70px;
-    background: $background-color;
+    background: $primary-color;
   }
 
   .login__form {
@@ -70,11 +70,11 @@
         .button {
             background: $tab-color;
         }
-        /* パスワード入力フィールドの文字の丸を装飾（練習用）*/
-        input[data-type="password"] {
-            text-security: circle;
-            -webkit-text-security: circle;
-        }
+        // /* パスワード入力フィールドの文字の丸を装飾（練習用）*/
+        // input[data-type="password"] {
+        //     text-security: circle;
+        //     -webkit-text-security: circle;
+        // }
 
         .label {
             color: #aaa;
