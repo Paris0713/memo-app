@@ -1,0 +1,35 @@
+// _mixins.scss
+
+$border-color: #507ea4;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin button-style($bg-color, $font-color) {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 2px solid $border-color;
+  cursor: pointer;
+  background-color: $bg-color;
+  color: $font-color;
+  text-decoration: none;
+}
+
+@mixin form-input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 2px solid $border-color;
+  font-family: $base-font;
+}
+
+@mixin form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: $primary-color;
+}

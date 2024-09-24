@@ -2,21 +2,34 @@
 
 
 /* index.php モバイル用スタイル */
+/* モバイル用スタイル */
 @media screen and (max-width: 600px) {
   .container {
     background-color: #283965;
   }
+  
   .login-php {
     background-color: #283965;
-    padding: 20px 10px; /* 横のpaddingを少し残して縦を減らす */
-    height: auto; /* 子要素が収まるように高さを自動調整 */
+    padding: 20px 10px;
+    height: auto;
   }
 
   .login-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100vh; /* 画面いっぱいの高さに設定 */
+    height: 100vh;
+  }
+
+  .tab {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .sign-in-htm, .sign-up-htm {
+    width: 100%;
+    padding: 20px;
   }
 }
 

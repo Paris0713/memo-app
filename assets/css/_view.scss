@@ -1,0 +1,38 @@
+/* ここからview_memo.phpの指定 */
+@mixin flex-center($direction: column) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .view {
+    @include flex-center(column);
+    padding: 20px;
+  
+    &-area {
+      @include flex-center(column);
+      width: 90vw;
+      height: auto;
+    }
+  
+    &-title {
+      align-items: center;
+  
+      h2 {
+        text-align: center;
+        margin: 20px auto;
+      }
+    }
+  
+    &-memo {
+      width: auto;
+      height: auto;
+      margin-bottom: 30px;
+    }
+
+    &-button {
+        @include button-style($primary-color, $base-background-color);
+        border-color: rgba(40, 57, 101, 0.902);
+  }
+}

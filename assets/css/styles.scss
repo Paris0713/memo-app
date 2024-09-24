@@ -1,11 +1,14 @@
 @charset "utf-8";
 
 @import 'base';
+@import 'mixins';
 @import 'layout';
 @import 'index';
 @import 'dashboard';
 @import 'edit';
+@import 'view';
 @import 'tablet';
 @import 'mobile';
+
 
 

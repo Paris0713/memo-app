@@ -30,17 +30,27 @@ if (!$memo) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=Cactus+Classical+Serif&family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
     <title><?php echo htmlspecialchars($memo['title'], ENT_QUOTES, 'UTF-8'); ?> - Memo App</title>
-    <link rel="stylesheet" href="./css/view_memo.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 
 <body>
-    <div class="container">
-        <h1><?php echo htmlspecialchars($memo['title'], ENT_QUOTES, 'UTF-8'); ?></h1>
-        <p><?php echo nl2br(htmlspecialchars($memo['content'], ENT_QUOTES, 'UTF-8')); ?></p>
-        <a href="dashboard.php">戻る</a>
+    <div class="view">
+        <div class="view-area">
+            <div class="view-title">
+                <h2><?php echo htmlspecialchars($memo['title'], ENT_QUOTES, 'UTF-8'); ?></h2>
+            </div>
+            <div class="view-memo">
+                <p><?php echo nl2br(htmlspecialchars($memo['content'], ENT_QUOTES, 'UTF-8')); ?></p>
+            </div>
+            <div class="view-button">
+            <a href="dashboard.php">戻る</a>
+            </div>
+        </div>
     </div>
 </body>
 

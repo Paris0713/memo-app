@@ -28,25 +28,67 @@ body a {
   min-height: 100vh;
 }
 
+/* ここからindex.phpの指定 */
 /* ログインフォーム */
 .login-wrap {
   width: 100%;
   margin: auto;
   max-width: 525px;
-  min-height: 670px;
-  /* 相対位置 */
+  min-height: 90vh;
   position: relative;
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
-.login-wrap .login-php {
+
+.login-php {
   width: 100%;
   height: 100%;
-  /* 絶対位置 */
   position: absolute;
   padding: 90px 70px 50px 70px;
   background: #283965;
 }
-.login-wrap .login__form {
+
+/* sign in sign upタブ ラベルの指定 */
+.login__form--sign-in,
+.login__form--sign-up {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  transition: all 0.4s linear;
+}
+
+#tab-1,
+#tab-2,
+.login-form .group .check {
+  display: none;
+}
+
+.tab,
+.login-form .group .label,
+.login-form .group .button {
+  text-transform: uppercase;
+}
+
+.tab {
+  font-size: 22px;
+  margin-right: 15px;
+  padding-bottom: 5px;
+  margin: 0 15px 10px 0;
+  display: inline-block;
+  border-bottom: 2px solid transparent;
+}
+
+/* タブをチェックした時のラベルの色 */
+#tab-1:checked + .tab,
+#tab-2:checked + .tab {
+  color: #fff;
+  border-color: #1161ee;
+}
+
+.login__form {
   min-height: 345px;
   /* 相対位置 */
   position: relative;
@@ -55,29 +97,12 @@ body a {
   /* 子要素に3D変換を適用 */
   transform-style: preserve-3d;
 }
-.login-wrap .login__form--sign-in, .login-wrap .login__form--sign-up {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  /* 絶対位置 */
-  position: absolute;
-  /* 縦軸（Y軸）を中心に回転 */
-  transform: rotateY(180deg);
-  /* 要素の裏側を非表示 */
-  backface-visibility: hidden;
-  /* 0.4秒で線形にアニメーション */
-  transition: all 0.4s linear;
-}
 
-.tab .group,
 .login-form .group {
   margin-bottom: 15px;
-  /* チェックされたときのラベルの色 */
+  /* 疑似要素で縦軸を描画 */
+  /* チェックされたときの.iconの背景色 */
 }
-.tab .group .label,
-.tab .group .input,
-.tab .group .button,
 .login-form .group .label,
 .login-form .group .input,
 .login-form .group .button {
@@ -85,52 +110,29 @@ body a {
   color: #fff;
   display: block;
 }
-.tab .group .input,
-.tab .group .button,
 .login-form .group .input,
 .login-form .group .button {
   border: none;
   padding: 15px 20px;
   border-radius: 25px;
-  background: rgba(255, 255, 255, 0.1019607843);
+  background: rgba(255, 255, 255, 0.1);
 }
-.tab .group .button,
-.login-form .group .button {
-  background: #1161ee;
-}
-.tab .group .label,
 .login-form .group .label {
   color: #aaa;
   font-size: 12px;
 }
-.tab .group .check:checked + label,
-.login-form .group .check:checked + label {
-  color: #fff;
-}
-.tab .group .check:checked + label .icon,
-.login-form .group .check:checked + label .icon {
+.login-form .group .button {
   background: #1161ee;
 }
-.tab .group .check:checked + label .icon::before,
-.login-form .group .check:checked + label .icon::before {
-  transform: scale(1) rotate(45deg);
-}
-.tab .group .check:checked + label .icon::after,
-.login-form .group .check:checked + label .icon::after {
-  transform: scale(1) rotate(-45deg);
-}
-.tab .group .icon,
-.login-form .group .icon {
+.login-form .group label .icon {
   width: 15px;
   height: 15px;
   border-radius: 2px;
   position: relative;
   display: inline-block;
-  background: rgba(255, 255, 255, 0.1019607843);
+  background: rgba(255, 255, 255, 0.1);
 }
-.tab .group .icon::before, .tab .group .icon::after,
-.login-form .group .icon::before,
-.login-form .group .icon::after {
+.login-form .group label .icon::before, .login-form .group label .icon::after {
   /* 擬似要素の内容を空に設定 */
   content: "";
   width: 10px;
@@ -139,21 +141,35 @@ body a {
   position: absolute;
   transition: all 0.2s ease-in-out 0s;
 }
-.tab .group .icon::before,
-.login-form .group .icon::before {
+.login-form .group label .icon::before {
   left: 3px;
   width: 5px;
   bottom: 6px;
   transform: scale(0) rotate(0);
 }
-.tab .group .icon::after,
-.login-form .group .icon::after {
+.login-form .group label .icon::after {
   top: 6px;
   right: 0;
   transform: scale(0) rotate(0);
 }
+.login-form .group .check:checked + label {
+  color: #fff;
+}
+.login-form .group .check:checked + label .icon {
+  background: #1161ee;
+}
+.login-form .group .check:checked + label .icon::before {
+  transform: scale(1) rotate(45deg);
+}
+.login-form .group .check:checked + label .icon::after {
+  transform: scale(1) rotate(-45deg);
+}
 
-#tab-1:checked ~ .login__form .login__form--sign-in,
+/* チェックすると回転 */
+#tab-1:checked ~ .login__form .login__form--sign-in {
+  transform: rotate(0);
+}
+
 #tab-2:checked ~ .login__form .login__form--sign-up {
   transform: rotate(0);
 }
@@ -318,6 +334,45 @@ body a {
   margin-bottom: 10px;
 }
 
+/* ここからview_memo.phpの指定 */
+.view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.view-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  height: auto;
+}
+.view-title {
+  align-items: center;
+}
+.view-title h2 {
+  text-align: center;
+  margin: 20px auto;
+}
+.view-memo {
+  width: auto;
+  height: auto;
+  margin-bottom: 30px;
+}
+.view-button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 2px solid #507ea4;
+  cursor: pointer;
+  background-color: #283965;
+  color: #b0c4de;
+  text-decoration: none;
+  border-color: rgba(40, 57, 101, 0.902);
+}
+
 /* index.php タブレット用スタイル */
 @media (min-width: 601px) and (max-width: 1024px) {
   .login-php {
@@ -325,20 +380,30 @@ body a {
   }
 }
 /* index.php モバイル用スタイル */
+/* モバイル用スタイル */
 @media screen and (max-width: 600px) {
   .container {
     background-color: #283965;
   }
   .login-php {
     background-color: #283965;
-    padding: 20px 10px; /* 横のpaddingを少し残して縦を減らす */
-    height: auto; /* 子要素が収まるように高さを自動調整 */
+    padding: 20px 10px;
+    height: auto;
   }
   .login-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100vh; /* 画面いっぱいの高さに設定 */
+    height: 100vh;
+  }
+  .tab {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .sign-in-htm, .sign-up-htm {
+    width: 100%;
+    padding: 20px;
   }
 }
 /* dashboard.php モバイル用スタイル */

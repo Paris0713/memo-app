@@ -10,7 +10,7 @@
 
     <title>Memo App</title>
     <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./assets/css/ans.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
     <script src="./assets/js/main.js" defer></script>
 
     <!-- git -->
