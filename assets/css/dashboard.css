@@ -42,7 +42,7 @@ a {
 }
 
 .memo {
-  grid-area: main;
+  grid-area: memo;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,7 +96,7 @@ a {
     grid-template-rows: auto auto auto;
     grid-template-areas:
       "header"
-      "main"
+      "memo"
       "nav";
   }
 
@@ -105,7 +105,7 @@ a {
   }
 
   .memo {
-    grid-area: main;
+    grid-area: memo;
   }
 
   .nav {

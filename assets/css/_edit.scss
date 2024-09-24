@@ -7,7 +7,7 @@
     justify-content: center;
     align-items: center;
     width: 80vw;
-    height: 80vh;
+    height: auto;
     margin: auto;
     background-color: $primary-color;
     color: $base-background-color;
@@ -46,11 +46,17 @@
 .edit-input,
 .edit-textarea,
 .edit-button {
+    padding: 10px;
     border-radius: 10px;
 }
-
+.inout.edit-input {
+    height: 40px;
+}
 .input.edit-textarea {
     height: 200px;
+}
+.input.edit-button {
+    width: auto;    
 }
 
 .foot-link {

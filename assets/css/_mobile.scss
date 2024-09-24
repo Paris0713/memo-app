@@ -1,5 +1,6 @@
 // mobile
 
+
 /* index.php モバイル用スタイル */
 @media screen and (max-width: 600px) {
   .container {
@@ -19,15 +20,19 @@
   }
 }
 
-
 /* dashboard.php モバイル用スタイル */
+
 @media screen and (max-width: 600px) {
+  body {
+    overflow: auto;
+  }
+
   .dashboard-container {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     grid-template-areas:
       "header"
-      "main"
+      "memo"
       "nav";
   }
 
@@ -36,7 +41,7 @@
   }
 
   .memo {
-    grid-area: main;
+    grid-area: memo;
   }
 
   .nav {
@@ -48,7 +53,7 @@
 /* edit_memo.php モバイル用スタイル */
 @media screen and (max-width: 600px) {
   .container {
-    display: none; /* .container要素を非表示に */
+    background-color: $primary-color;
   }
 
   .edit {
@@ -56,8 +61,5 @@
     overflow: hidden; /* 子要素がはみ出さないように */
   }
 
-  .login-php {
-    width: 100%;
-    overflow: hidden;
-  }
+
 }
